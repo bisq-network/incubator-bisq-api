@@ -70,6 +70,21 @@ Note that username is ignored and can be whatever, i.e. in following example use
 
     ../gradlew run --args="--httpApiHost=127.0.0.1 --httpApiPort=8080" 
     
+## Docker integration
+
+First you need to build the docker image for the API:
+
+    cd api
+    docker-compose build
+
+Start container with the API:
+    
+    docker-compose up alice
+
+It will automatically start `bisq-api` (alice), `bitcoind` and `seednode` in regtest mode.
+
+    curl localhost:8080/api/v1/version
+    
 **CAUTION! Please do not expose the API over a public interface**
 
 ## Experimental features
