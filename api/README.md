@@ -100,3 +100,19 @@ Some features will be not sufficiently tested and will only be enabled if you ad
     --seedNodes=localhost:8000 --btcNodes=localhost:18445 --baseCurrencyNetwork=BTC_REGTEST --logLevel=info 
     --useDevPrivilegeKeys=true --bitcoinRegtestHost=NONE --myAddress=172.17.0.1:8003 
     --enableHttpApiExperimentalFeatures"
+
+## Integration tests
+
+Integration tests leverage Docker and run in headless mode. First you need to build docker images for the api:
+
+    cd api
+    docker-compose build
+    ../gradlew testIntegration
+    
+IntelliJ Idea has awesome integration so just right click on `api/src/testIntegration` directory and select 
+`Debug All Tests`.
+
+### Integration tests logging
+
+Due to Travis log length limitations the log level is set to WARN, but if you need to see more details locally
+go to `ContainerFactory` class and set `ENV_LOG_LEVEL_VALUE` property to `debug`.

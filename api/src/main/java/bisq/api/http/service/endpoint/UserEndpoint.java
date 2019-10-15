@@ -29,6 +29,7 @@ import javax.inject.Inject;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -54,7 +55,7 @@ public class UserEndpoint {
     @Operation(summary = "Change password")
     @POST
     @Path("/password")
-    public void changePassword(@Suspended AsyncResponse asyncResponse, @Valid ChangePassword data) {
+    public void changePassword(@Suspended AsyncResponse asyncResponse, @NotNull @Valid ChangePassword data) {
         UserThread.execute(() -> {
             try {
                 apiPasswordManager.changePassword(data.oldPassword, data.newPassword);
