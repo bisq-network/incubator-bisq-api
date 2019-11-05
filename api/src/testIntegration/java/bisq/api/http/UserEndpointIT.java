@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.isEmptyString;
 
 
@@ -62,7 +63,7 @@ public class UserEndpointIT {
 
     @InSequence(2)
     @Test
-    public void changePassword_missingPayload_returns400() {
+    public void changePassword_missingPayload_returns422() {
         int alicePort = getAlicePort();
         given().
                 port(alicePort).
@@ -73,8 +74,9 @@ public class UserEndpointIT {
                 post("/api/v1/user/password").
 //
         then().
-                statusCode(400).
-                and().body(isEmptyString());
+                statusCode(422).
+                and().body("errors.size", equalTo(1)).
+                and().body("errors[0]", equalTo("Request payload is required"));
 
         verifyThatAuthenticationIsDisabled();
     }

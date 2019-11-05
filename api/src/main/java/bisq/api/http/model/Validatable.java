@@ -17,19 +17,6 @@
 
 package bisq.api.http.model;
 
-public class ChangePassword implements Validatable {
-
-    public String newPassword;
-    public String oldPassword;
-
-    public ChangePassword() {
-    }
-
-    public ChangePassword(String newPassword, String oldPassword) {
-        this.newPassword = newPassword;
-        this.oldPassword = oldPassword;
-    }
-
-    public void validate() {
-    }
+public interface Validatable {
+    void validate();
 }

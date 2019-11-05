@@ -18,6 +18,7 @@
 package bisq.api.http.service.endpoint;
 
 import bisq.api.http.model.ChangePassword;
+import bisq.api.http.model.PayloadValidator;
 import bisq.api.http.service.auth.ApiPasswordManager;
 
 import bisq.common.UserThread;
@@ -28,8 +29,6 @@ import javax.inject.Inject;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import javax.validation.Valid;
-import javax.validation.constraints.NotNull;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -46,18 +45,21 @@ import javax.ws.rs.core.Response;
 public class UserEndpoint {
 
     private final ApiPasswordManager apiPasswordManager;
+    private final PayloadValidator payloadValidator;
 
     @Inject
-    public UserEndpoint(ApiPasswordManager apiPasswordManager) {
+    public UserEndpoint(ApiPasswordManager apiPasswordManager, PayloadValidator payloadValidator) {
         this.apiPasswordManager = apiPasswordManager;
+        this.payloadValidator = payloadValidator;
     }
 
     @Operation(summary = "Change password")
     @POST
     @Path("/password")
-    public void changePassword(@Suspended AsyncResponse asyncResponse, @NotNull @Valid ChangePassword data) {
+    public void changePassword(@Suspended AsyncResponse asyncResponse, ChangePassword data) {
         UserThread.execute(() -> {
             try {
+                payloadValidator.validateRequiredRequestPayload(data);
                 apiPasswordManager.changePassword(data.oldPassword, data.newPassword);
                 asyncResponse.resume(Response.noContent().build());
             } catch (Throwable e) {
