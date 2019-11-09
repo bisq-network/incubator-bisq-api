@@ -6,6 +6,7 @@ bisq.asset.coins.Actinium
 bisq.asset.coins.Adeptio
 bisq.asset.coins.Aeon
 bisq.asset.coins.Amitycoin
+bisq.asset.coins.Animecoin
 bisq.asset.coins.Arqma
 bisq.asset.coins.Askcoin
 bisq.asset.coins.Australiacash
@@ -59,6 +60,8 @@ bisq.asset.coins.Iridium
 bisq.asset.coins.Kekcoin
 bisq.asset.coins.KnowYourDeveloper
 bisq.asset.coins.Kore
+bisq.asset.coins.Krypton
+bisq.asset.coins.LBRYCredits
 bisq.asset.coins.Litecoin
 bisq.asset.coins.LitecoinPlus
 bisq.asset.coins.LitecoinZ
@@ -74,6 +77,7 @@ bisq.asset.coins.MoX
 bisq.asset.coins.Myce
 bisq.asset.coins.Namecoin
 bisq.asset.coins.Navcoin
+bisq.asset.coins.Ndau
 bisq.asset.coins.Noir
 bisq.asset.coins.NoteBlockchain
 bisq.asset.coins.ParsiCoin
