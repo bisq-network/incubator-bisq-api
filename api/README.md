@@ -66,6 +66,11 @@ Note that username is ignored and can be whatever, i.e. in following example use
     cd api
     ../gradlew run --args="--appName=bisq-API"
     
+## Run Desktop with API:
+
+    cd api
+    ../gradlew runDesktop -PARGS="--desktopWithHttpApi=true"
+    
 ## Host and port configuration
 
     ../gradlew run --args="--httpApiHost=127.0.0.1 --httpApiPort=8080" 

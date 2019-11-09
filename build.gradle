@@ -307,6 +307,12 @@ configure(project(':api')) {
         testCompile "org.apache.commons:commons-lang3:$langVersion"
         testCompile 'io.swagger.core.v3:swagger-jaxrs2:2.0.6' //needed to generate documentation using SwaggerGenerator
     }
+
+    task runDesktop(type: JavaExec) {
+        main = "bisq.api.http.app.DesktopAndApiAppMain"
+        classpath = sourceSets.main.runtimeClasspath
+        args(project.hasProperty('ARGS') ? ARGS.split(' ') : [])
+    }
 }
 
 
