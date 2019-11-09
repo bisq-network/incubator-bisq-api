@@ -15,21 +15,16 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package bisq.api.http.model;
+package bisq.api.http;
 
-public class ChangePassword implements Validatable {
+@SuppressWarnings("WeakerAccess")
+public final class ApiTestHelper {
 
-    public String newPassword;
-    public String oldPassword;
-
-    public ChangePassword() {
+    public static void waitForAllServicesToBeReady() throws InterruptedException {
+//        TODO it would be nice to expose endpoint that would respond with 200
+        // PaymentMethod initializes it's static values after all services get initialized
+        int ALL_SERVICES_INITIALIZED_DELAY = 5000;
+        Thread.sleep(ALL_SERVICES_INITIALIZED_DELAY);
     }
 
-    public ChangePassword(String newPassword, String oldPassword) {
-        this.newPassword = newPassword;
-        this.oldPassword = oldPassword;
-    }
-
-    public void validate() {
-    }
 }

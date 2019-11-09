@@ -15,21 +15,25 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package bisq.api.http.model;
+package bisq.core.exceptions;
 
-public class ChangePassword implements Validatable {
-
-    public String newPassword;
-    public String oldPassword;
-
-    public ChangePassword() {
+/**
+ * Copy of ValidationException from javax.validation:validation-api
+ */
+public class ValidationException extends RuntimeException {
+    public ValidationException(String message) {
+        super(message);
     }
 
-    public ChangePassword(String newPassword, String oldPassword) {
-        this.newPassword = newPassword;
-        this.oldPassword = oldPassword;
+    public ValidationException() {
+        super();
     }
 
-    public void validate() {
+    public ValidationException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public ValidationException(Throwable cause) {
+        super(cause);
     }
 }

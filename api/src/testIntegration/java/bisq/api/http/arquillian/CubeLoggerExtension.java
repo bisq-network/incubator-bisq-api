@@ -15,21 +15,14 @@
  * along with Bisq. If not, see <http://www.gnu.org/licenses/>.
  */
 
-package bisq.api.http.model;
+package bisq.api.http.arquillian;
 
-public class ChangePassword implements Validatable {
+import org.jboss.arquillian.core.spi.LoadableExtension;
 
-    public String newPassword;
-    public String oldPassword;
+public class CubeLoggerExtension implements LoadableExtension {
 
-    public ChangePassword() {
-    }
-
-    public ChangePassword(String newPassword, String oldPassword) {
-        this.newPassword = newPassword;
-        this.oldPassword = oldPassword;
-    }
-
-    public void validate() {
+    @Override
+    public void register(ExtensionBuilder extensionBuilder) {
+        extensionBuilder.observer(CubeLogger.class);
     }
 }

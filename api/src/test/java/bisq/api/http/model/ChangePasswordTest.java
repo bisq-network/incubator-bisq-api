@@ -17,19 +17,18 @@
 
 package bisq.api.http.model;
 
-public class ChangePassword implements Validatable {
+import org.junit.Test;
 
-    public String newPassword;
-    public String oldPassword;
+public class ChangePasswordTest {
 
-    public ChangePassword() {
-    }
-
-    public ChangePassword(String newPassword, String oldPassword) {
-        this.newPassword = newPassword;
-        this.oldPassword = oldPassword;
-    }
-
-    public void validate() {
+    @Test
+    public void validate_never_throws() {
+        new ChangePassword().validate();
+        new ChangePassword("", null).validate();
+        new ChangePassword(null, "").validate();
+        new ChangePassword("", "").validate();
+        new ChangePassword("a", "b").validate();
+        new ChangePassword("a", "").validate();
+        new ChangePassword("", "a").validate();
     }
 }

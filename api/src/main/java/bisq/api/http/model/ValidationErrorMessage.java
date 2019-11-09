@@ -17,19 +17,21 @@
 
 package bisq.api.http.model;
 
-public class ChangePassword implements Validatable {
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public String newPassword;
-    public String oldPassword;
+import com.google.common.collect.ImmutableList;
 
-    public ChangePassword() {
+public class ValidationErrorMessage {
+    private final ImmutableList<String> errors;
+
+    @JsonCreator
+    public ValidationErrorMessage(@JsonProperty("errors") ImmutableList<String> errors) {
+        this.errors = errors;
     }
 
-    public ChangePassword(String newPassword, String oldPassword) {
-        this.newPassword = newPassword;
-        this.oldPassword = oldPassword;
-    }
-
-    public void validate() {
+    @JsonProperty
+    public ImmutableList<String> getErrors() {
+        return errors;
     }
 }

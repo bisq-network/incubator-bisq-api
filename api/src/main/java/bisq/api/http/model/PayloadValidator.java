@@ -17,19 +17,13 @@
 
 package bisq.api.http.model;
 
-public class ChangePassword implements Validatable {
+import bisq.core.exceptions.ValidationException;
 
-    public String newPassword;
-    public String oldPassword;
-
-    public ChangePassword() {
-    }
-
-    public ChangePassword(String newPassword, String oldPassword) {
-        this.newPassword = newPassword;
-        this.oldPassword = oldPassword;
-    }
-
-    public void validate() {
+public class PayloadValidator {
+    public void validateRequiredRequestPayload(Validatable data) {
+        if (null == data) {
+            throw new ValidationException("Request payload is required");
+        }
+        data.validate();
     }
 }
